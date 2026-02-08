@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Plus, Edit, Trash2, Home, ShoppingBag, Palette, Users, Save, Sparkles, LogOut, Check, Image as ImageIcon, X, Loader2, DollarSign, MapPin } from 'lucide-react';
-import { generatePropertyDescription } from '../services/geminiService';
+import { generatePropertyDescription } from '../services/geminiService.ts';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();

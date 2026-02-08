@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Home from './pages/Home';
-import FurniturePage from './pages/Furniture';
-import PaintsPage from './pages/Paints';
-import AdminDashboard from './pages/AdminDashboard';
-import DetailView from './pages/DetailView';
-import SplashScreen from './components/SplashScreen';
+import Layout from './components/Layout.tsx';
+import Home from './pages/Home.tsx';
+import FurniturePage from './pages/Furniture.tsx';
+import PaintsPage from './pages/Paints.tsx';
+import AdminDashboard from './pages/AdminDashboard.tsx';
+import DetailView from './pages/DetailView.tsx';
+import SplashScreen from './components/SplashScreen.tsx';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
