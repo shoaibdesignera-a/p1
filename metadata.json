@@ -1,8 +1,9 @@
 {
-  "name": "P1",
-  "description": "A high-performance real estate, furniture, and paints marketplace tailored for the Nigerian market with premium branding.",
+  "name": "MM&GG Luxury Real Estate",
+  "description": "High-performance real estate, furniture, and paints marketplace tailored for the Nigerian elite market.",
   "requestFramePermissions": [
     "camera",
-    "microphone"
+    "microphone",
+    "geolocation"
   ]
 }
