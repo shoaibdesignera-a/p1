@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { 
   MapPin, Bed, Bath, Share2, Heart, CheckCircle, 
   MessageCircle, ArrowLeft, ShieldCheck, ChevronRight, 
-  Star, Loader2 
+  Star, Loader2, XCircle
 } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
@@ -15,22 +15,22 @@ const DetailView: React.FC = () => {
   const [isSearching, setIsSearching] = useState(true);
 
   useEffect(() => {
-    // 1. Fetch from localStorage exclusively
-    const saved = localStorage.getItem('mmgg_listings');
-    const all = saved ? JSON.parse(saved) : [];
-    
-    // 2. Find the requested asset
-    const found = all.find((p: any) => p.id === id);
-    
-    if (found) {
-        // Normalize dynamic data structure
-        setItem({
-            ...found,
-            images: Array.isArray(found.images) ? found.images : [found.images],
-            amenities: typeof found.amenities === 'string' 
-              ? found.amenities.split(',').map((s:string) => s.trim()) 
-              : (Array.isArray(found.amenities) ? found.amenities : [])
-        });
+    try {
+      const saved = localStorage.getItem('mmgg_listings');
+      const all = saved ? JSON.parse(saved) : [];
+      const found = all.find((p: any) => p.id === id);
+      
+      if (found) {
+          setItem({
+              ...found,
+              images: Array.isArray(found.images) ? found.images : [found.images],
+              amenities: typeof found.amenities === 'string' 
+                ? found.amenities.split(',').map((s:string) => s.trim()) 
+                : (Array.isArray(found.amenities) ? found.amenities : [])
+          });
+      }
+    } catch (e) {
+      console.error("Failed to load listing details", e);
     }
     setIsSearching(false);
   }, [id]);
@@ -63,7 +63,6 @@ const DetailView: React.FC = () => {
 
   return (
     <div className="bg-[#FDFDFD] min-h-screen">
-      {/* Contextual Header */}
       <div className="bg-[#001F3F] text-white/40 py-3 px-6 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-4">
         <Link to="/" className="hover:text-[#D4AF37] transition-colors">Global</Link>
         <ChevronRight size={10} />
@@ -73,7 +72,6 @@ const DetailView: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 grid grid-cols-1 lg:grid-cols-2 gap-20">
-        {/* Dynamic Gallery */}
         <div className="space-y-6">
           <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.2)] bg-slate-100 relative group border-[12px] border-white">
             <img 
@@ -98,7 +96,6 @@ const DetailView: React.FC = () => {
           </div>
         </div>
 
-        {/* High-End Content Architecture */}
         <div className="space-y-10">
           <header className="space-y-6">
             <div className="flex items-center gap-3">
@@ -190,11 +187,5 @@ const DetailView: React.FC = () => {
     </div>
   );
 };
-
-const XCircle = ({ size, className }: { size: number; className?: string }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <circle cx="12" cy="12" r="10" /><line x1="15" y1="9" x2="9" y2="15" /><line x1="9" y1="9" x2="15" y2="15" />
-    </svg>
-);
 
 export default DetailView;

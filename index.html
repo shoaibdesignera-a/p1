@@ -25,7 +25,6 @@
       .gold-bg {
         background-color: #D4AF37;
       }
-      /* Custom scrollbar for premium feel */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -48,12 +47,12 @@
     "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.4",
     "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0"
   }
 }
 </script>
 <script>
-  // Global error handler to help diagnose "white screen" issues in production
   window.onerror = function(message, source, lineno, colno, error) {
     console.error("Global JS Error:", message, "at", source, lineno, colno);
     return false;
@@ -62,5 +61,6 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>
